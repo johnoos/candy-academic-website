@@ -12,3 +12,9 @@ Single-page document vault (Astro, static, served by Cloudflare Workers).
 ## Editing
 - Page text: top of `src/pages/index.astro`.
 - Categories and files: `src/data/vault.js`. Order in the file = order on the page.
+
+## Category pages
+Each category also has its own shareable page, generated from `src/data/vault.js`:
+`/curriculum-vitae`, `/academic-qualifications-education`, `/academic-qualifications-music`,
+`/other-music-certificates`, `/academic-transcripts`, `/documents-other`, `/workshops`, `/references`.
+Shared layout and styles live in `src/layouts/VaultLayout.astro`.
