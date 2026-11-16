@@ -1,0 +1,136 @@
+---
+// src/layouts/VaultLayout.astro
+const { title = "Document Vault" } = Astro.props;
+const BRAND_ACCENT = "#127C44";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <title>{title}</title>
+  <style is:global>
+    body {
+      background-color: #f7f4ec;
+      color: #1c1f26;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      border-top: 6px solid #14213d;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+    .vault-container {
+      max-width: 650px;
+      width: 100%;
+    }
+    h1 {
+      font-family: 'Libre Caslon Text', Georgia, serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: #14213d;
+      margin-bottom: 8px;
+      border-bottom: 2px solid #b08d57;
+      padding-bottom: 12px;
+    }
+    p {
+      font-size: 1.05rem;
+      line-height: 1.5;
+      color: #4f5360;
+      margin-bottom: 32px;
+    }
+
+    /* Collapsible categories */
+    .category {
+      border-bottom: 1px solid #e3dcc9;
+      padding: 4px 0;
+    }
+    .category summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 12px 0;
+      font-family: 'Libre Caslon Text', Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #14213d;
+      user-select: none;
+    }
+    .category summary::-webkit-details-marker { display: none; }
+    .category summary::before {
+      content: "\25B8";
+      color: #8a6a35;
+      margin-right: 12px;
+      transition: transform 0.2s ease;
+      display: inline-block;
+    }
+    .category[open] summary::before { transform: rotate(90deg); }
+    .category summary:hover { color: var(--accent); }
+    .category summary:focus-visible {
+      outline: 2px solid #b08d57;
+      outline-offset: 2px;
+    }
+    .count {
+      margin-left: auto;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #8a8d96;
+    }
+
+    .file-list {
+      list-style: none !important;
+      list-style-type: none !important;
+      padding: 0 0 8px 24px;
+      margin: 0;
+    }
+    .file-item { margin-bottom: 14px; }
+    .file-link,
+    .file-link span,
+    .file-name {
+      color: #4f5360 !important;
+      text-decoration: none;
+      font-size: 1.05rem;
+      display: inline-flex;
+      align-items: center;
+      transition: color 0.2s ease;
+    }
+    .bullet {
+      color: #8a6a35 !important;
+      margin-right: 12px;
+      font-weight: bold;
+    }
+    .file-link:hover,
+    .file-link:hover span {
+      color: #14213d !important;
+    }
+  
+    .back-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+      color: #8a6a35;
+      text-decoration: none;
+    }
+    .back-link:hover { color: #14213d; }
+    .category-link {
+      display: inline-block;
+      margin: 0 0 14px 0;
+      font-size: 0.85rem;
+      color: #8a6a35;
+      text-decoration: none;
+    }
+    .category-link:hover { color: #14213d; text-decoration: underline; }
+</style>
+</head>
+<body>
+  <div class="vault-container" style={`--accent: ${BRAND_ACCENT};`}>
+    <slot />
+  </div>
+</body>
+</html>

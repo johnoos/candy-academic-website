@@ -1,0 +1,33 @@
+---
+// src/pages/[category].astro
+// One shareable page per category, e.g. /references, /workshops
+import VaultLayout from '../layouts/VaultLayout.astro';
+import { vaultFolders } from '../data/vault.js';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return vaultFolders.map(folder => ({
+    params: { category: folder.dir },
+    props: { folder },
+  }));
+}
+
+const { folder } = Astro.props;
+---
+
+<VaultLayout title={`${folder.title} | Document Vault`}>
+  <a class="back-link" href="/">&larr; All documents</a>
+  <h1>{folder.title}</h1>
+
+  <ul class="file-list" style="padding-left:0;">
+    {folder.files.map(file => (
+      <li class="file-item">
+        <a class="file-link" href={`/assets/${folder.dir}/${file.slug}`} target="_blank" rel="noopener noreferrer">
+          <span class="bullet">■</span>
+          <span>{file.name}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</VaultLayout>
